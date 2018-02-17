@@ -34,3 +34,4 @@ Simply copy/paste this in a terminal:
 `wget -q https://raw.githubusercontent.com/scoony/iptorrents.c.1h.sh/master/iptorrents.c.1h.sh -O ~/.config/argos/iptorrents.c.1h.sh && sed -i -e 's/\r//g' ~/.config/argos/iptorrents.c.1h.sh && chmod +x ~/.config/argos/iptorrents.c.1h.sh`
 
 **Screenshots:**
+![ScreenShot](https://raw.githubusercontent.com/scoony/iptorrents.c.1h.sh/master/.screenshots/Capture%20d%E2%80%99%C3%A9cran%20de%202018-02-17%2010-11-18.png)
