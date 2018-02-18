@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version="0.0.0.1"
+version="0.0.0.2"
 
 #### Checking Dependencies
 if [[ ! -f "/bin/yad" ]] && [[ ! -f "/usr/bin/yad" ]]; then yad_missing="1"; fi
@@ -164,7 +164,7 @@ fi
 ##fi
 
 #### If the website is too slow to respond
-website_response_time=`curl --max-time 5 -s -w %{time_total}\\n -o /dev/null $website_url | sed 's/,.*//'`
+website_response_time=`curl --max-time 5 -s -w %{time_total}\\n -o /dev/null $website_url | sed 's/,.*//' | sed 's/\..*//'`
 if [ "$website_response_time" -ge "5" ]; then
   echo " Website too slow | image='$IPTORRENTS_BAD_ICON' imageWidth=25"
   echo "---"
