@@ -20,7 +20,7 @@
 - collect important informations on IPTORRENTS (ratio, download, upload, credits left, bonus amount, hit and run...)
 - check the current url of the website (will try to track if any change)
 - check the IP sent to this particular website (for the ones who want to make sure that their VPN is properly set)
-- some push notifications can be sent to phones thru PushOver
+- some push notifications can be sent to phones thru PushOver (still need to decide when)
 
 **Required Dependencies:**
 - `sudo apt-get install yad`
