@@ -13,12 +13,12 @@ if [[ "$yad_missing" == "1" ]] || [[ "$curl_missing" == "1" ]] || [[ "$gawk_miss
   IPTORRENTS_BAD_ICON=$(curl -s "https://raw.githubusercontent.com/scoony/iptorrents.c.1h.sh/master/.cache-icons/iptorrents-bad.png" | base64 -w 0)
   echo " Erreur(s) | image='$IPTORRENTS_BAD_ICON' imageWidth=25"
   echo "---"
-  if [[ "$yad_missing" == "1" ]]; then echo -e "\e[1mDépendance manquante      :\e[0m sudo apt-get install yad | ansi=true font='Ubuntu Mono'"; fi
-  if [[ "$curl_missing" == "1" ]]; then echo -e "\e[1mDépendance manquante      :\e[0m sudo apt-get install curl | ansi=true font='Ubuntu Mono'"; fi
-  if [[ "$gawk_missing" == "1" ]]; then echo -e "\e[1mDépendance manquante      :\e[0m sudo apt-get install gawk | ansi=true font='Ubuntu Mono'"; fi
-  if [[ "$wget_missing" == "1" ]]; then echo -e "\e[1mDépendance manquante      :\e[0m sudo apt-get install wget | ansi=true font='Ubuntu Mono'"; fi
-  if [[ "$grep_missing" == "1" ]]; then echo -e "\e[1mDépendance manquante      :\e[0m sudo apt-get install grep | ansi=true font='Ubuntu Mono'"; fi
-  if [[ "$sed_missing" == "1" ]]; then echo -e "\e[1mDépendance manquante      :\e[0m sudo apt-get install sed | ansi=true font='Ubuntu Mono'"; fi
+  if [[ "$yad_missing" == "1" ]]; then echo -e "\e[1mDependencie missing     :\e[0m sudo apt-get install yad | ansi=true font='Ubuntu Mono'"; fi
+  if [[ "$curl_missing" == "1" ]]; then echo -e "\e[1mDependencie missing       :\e[0m sudo apt-get install curl | ansi=true font='Ubuntu Mono'"; fi
+  if [[ "$gawk_missing" == "1" ]]; then echo -e "\e[1mDependencie missing       :\e[0m sudo apt-get install gawk | ansi=true font='Ubuntu Mono'"; fi
+  if [[ "$wget_missing" == "1" ]]; then echo -e "\e[1mDependencie missing       :\e[0m sudo apt-get install wget | ansi=true font='Ubuntu Mono'"; fi
+  if [[ "$grep_missing" == "1" ]]; then echo -e "\e[1mDependencie missing       :\e[0m sudo apt-get install grep | ansi=true font='Ubuntu Mono'"; fi
+  if [[ "$sed_missing" == "1" ]]; then echo -e "\e[1mDependencie missing       :\e[0m sudo apt-get install sed | ansi=true font='Ubuntu Mono'"; fi
   echo "---"
   echo "Refresh | refresh=true"
   exit 1
