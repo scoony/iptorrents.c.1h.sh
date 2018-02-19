@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version="0.0.0.2"
+version="0.0.0.3"
 
 #### Checking Dependencies
 if [[ ! -f "/bin/yad" ]] && [[ ! -f "/usr/bin/yad" ]]; then yad_missing="1"; fi
@@ -126,6 +126,7 @@ if [[ ! -f "$icons_cache/unprotected.png" ]] ; then curl -o "$icons_cache/unprot
 if [[ ! -f "$icons_cache/message.png" ]] ; then curl -o "$icons_cache/message.png" "https://raw.githubusercontent.com/scoony/iptorrents.c.1h.sh/master/.cache-icons/message.png" ; fi
 if [[ ! -f "$icons_cache/bonus.png" ]] ; then curl -o "$icons_cache/bonus.png" "https://raw.githubusercontent.com/scoony/iptorrents.c.1h.sh/master/.cache-icons/bonus.png" ; fi
 if [[ ! -f "$icons_cache/warning.png" ]] ; then curl -o "$icons_cache/warning.png" "https://raw.githubusercontent.com/scoony/iptorrents.c.1h.sh/master/.cache-icons/warning.png" ; fi
+if [[ ! -f "$icons_cache/invitation.png" ]] ; then curl -o "$icons_cache/invitation.png" "https://raw.githubusercontent.com/scoony/iptorrents.c.1h.sh/master/.cache-icons/invitation.png" ; fi
 
 #### Declaration of my icons as variable
 IPTORRENTS_ICON=$(curl -s "file://$icons_cache/iptorrents.png" | base64 -w 0)
@@ -142,6 +143,7 @@ UNPROTECTED_ICON=$(curl -s "file://$icons_cache/unprotected.png" | base64 -w 0)
 MESSAGE_ICON=$(curl -s "file://$icons_cache/message.png" | base64 -w 0)
 BONUS_ICON=$(curl -s "file://$icons_cache/bonus.png" | base64 -w 0)
 WARNING_ICON=$(curl -s "file://$icons_cache/warning.png" | base64 -w 0)
+INVITATION_ICON=$(curl -s "file://$icons_cache/invitation.png" | base64 -w 0)
 
 #### Collecting local settings for IPTORRENTS
 iptorrents_login=`cat $HOME/.config/argos/.iptorrents-account | awk '{print $1}' FS="§"`
@@ -195,7 +197,7 @@ if [[ "$iptorrents_login" != "" ]] && [[ "$iptorrents_password" != "" ]]; then
   website_login_page=`echo $website_url"/take_login.php"`
   wget -q --save-cookies $HOME/.config/argos/iptorrents/cookies.txt --keep-session-cookies --post-data="username=$iptorrents_login&password=$iptorrents_password" "$website_login_page" "$webbrowser_agent"
 else
-  account_infos=`echo -e "yad --fixed --undecorated --no-escape --skip-taskbar --width=\"700\" --height=\"300\" --center --borders=20 --window-icon=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --title=\"Global Settings\" --text=\"<big>\r\rPlease, enter your account(s) details.\rThose informations are not stored on internet.\r\r</big>\" --text-align=center --image=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --form --separator=\"§\" --field=\"Login\" --field=\"Password\" --field=\" \":LBL --field=\"Activate notification thru PushOver:CHK\" --field=\"API KEY\" --field=\"USER_KEY\" --field=\" \":LBL --field=\"User-Agent de Wget\" \"$iptorrents_login\" \"$iptorrents_password\" \"\" \"$push_system_status\" \"$token_app\" \"$destinataire_1\" \"\" \"$wget_user_agent\" --button=gtk-ok:0 2>/dev/null >~/.config/argos/.iptorrents-account"`
+  account_infos=`echo -e "yad --fixed --undecorated --no-escape --skip-taskbar --width=\"700\" --height=\"300\" --center --borders=20 --window-icon=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --title=\"Global Settings\" --text=\"<big>\r\rPlease, enter your account(s) details.\rThose informations are not stored on internet.\r\r</big>\" --text-align=center --image=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --form --separator=\"§\" --field=\"Login\" --field=\"Password\" --field=\" \":LBL --field=\"Activate notification thru PushOver:CHK\" --field=\"API KEY\" --field=\"USER_KEY\" --field=\" \":LBL --field=\"WGET User-Agent\" \"$iptorrents_login\" \"$iptorrents_password\" \"\" \"$push_system_status\" \"$token_app\" \"$destinataire_1\" \"\" \"$wget_user_agent\" --button=gtk-ok:0 2>/dev/null >~/.config/argos/.iptorrents-account"`
   echo " IPTORRENTS | image='$IPTORRENTS_BAD_ICON' imageWidth=25"
   echo "---"
   echo "You must press \"settings\" to add your login/password"
@@ -281,7 +283,7 @@ fi
 
 #### If no ratio at all (probably wrong credentials)
 if [[ "$my_ratio" == "" ]]; then
-  account_infos=`echo -e "yad --fixed --undecorated --no-escape --skip-taskbar --width=\"700\" --height=\"300\" --center --borders=20 --window-icon=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --title=\"Global Settings\" --text=\"<big>\r\rPlease, enter your account(s) details.\rThose informations are not stored on internet.\r\r</big>\" --text-align=center --image=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --form --separator=\"§\" --field=\"Login\" --field=\"Password\" --field=\" \":LBL --field=\"Activate notification thru PushOver:CHK\" --field=\"API KEY\" --field=\"USER_KEY\" --field=\" \":LBL --field=\"User-Agent de Wget\" \"$iptorrents_login\" \"$iptorrents_password\" \"\" \"$push_system_status\" \"$token_app\" \"$destinataire_1\" \"\" \"$wget_user_agent\" --button=gtk-ok:0 2>/dev/null >~/.config/argos/.iptorrents-account"`
+  account_infos=`echo -e "yad --fixed --undecorated --no-escape --skip-taskbar --width=\"700\" --height=\"300\" --center --borders=20 --window-icon=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --title=\"Global Settings\" --text=\"<big>\r\rPlease, enter your account(s) details.\rThose informations are not stored on internet.\r\r</big>\" --text-align=center --image=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --form --separator=\"§\" --field=\"Login\" --field=\"Password\" --field=\" \":LBL --field=\"Activate notification thru PushOver:CHK\" --field=\"API KEY\" --field=\"USER_KEY\" --field=\" \":LBL --field=\"WGET User-Agent\" \"$iptorrents_login\" \"$iptorrents_password\" \"\" \"$push_system_status\" \"$token_app\" \"$destinataire_1\" \"\" \"$wget_user_agent\" --button=gtk-ok:0 2>/dev/null >~/.config/argos/.iptorrents-account"`
   echo " IPTORRENTS | image='$IPTORRENTS_BAD_ICON' imageWidth=25"
   echo "---"
   echo "Unable to connect to your account."
@@ -291,10 +293,15 @@ if [[ "$my_ratio" == "" ]]; then
   exit 1
 fi
 
-#### Collecting the user's avatar
+#### Collecting the user's avatar, invitations left and messages
 iptorrents_user_id=`cat $HOME/.config/argos/iptorrents/page.html | grep -Po '(?<=href="/u/)[^"]*'`
 wget -q --load-cookies=$HOME/.config/argos/iptorrents/cookies.txt "$website_url/u/$iptorrents_user_id" -O $HOME/.config/argos/iptorrents/page_account.html "$webbrowser_agent"
 avatar_url=`cat $HOME/.config/argos/iptorrents/page_account.html | grep -Po '(?<=img src=")[^"]*' | tail -1`
+available_invitations=`cat $HOME/.config/argos/iptorrents/page_account.html | grep -Po '(?<=Available: )[^<]*' | tr -d '[:blank:]'`
+available_messages=`cat $HOME/.config/argos/iptorrents/page_account.html | grep -Po '(?<=Inbox \()[^)]*'`
+if [[ "$available_messages" != "no new messages" ]]; then
+  IPTORRENTS_ICON=$IPTORRENTS_MESSAGE_ICON
+fi
 IMAGE=$(curl -s "$avatar_url" | base64 -w 0)
 
 #### Checking if the real IP is hidden (for this website)
@@ -309,7 +316,7 @@ else
 fi
 
 #### Creating the "settings" button
-account_infos=`echo -e "yad --fixed --undecorated --no-escape --skip-taskbar --width=\"700\" --height=\"300\" --center --borders=20 --window-icon=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --title=\"Global Settings\" --text=\"<big>\r\rPlease, enter your account(s) details.\rThose informations are not stored on internet.\r\r</big>\" --text-align=center --image=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --form --separator=\"§\" --field=\"Login\" --field=\"Password\" --field=\" \":LBL --field=\"Activate notification thru PushOver:CHK\" --field=\"API KEY\" --field=\"USER_KEY\" --field=\" \":LBL --field=\"User-Agent de Wget\" \"$iptorrents_login\" \"$iptorrents_password\" \"\" \"$push_system_status\" \"$token_app\" \"$destinataire_1\" \"\" \"$wget_user_agent\" --button=gtk-ok:0 2>/dev/null >~/.config/argos/.iptorrents-account"`
+account_infos=`echo -e "yad --fixed --undecorated --no-escape --skip-taskbar --width=\"700\" --height=\"300\" --center --borders=20 --window-icon=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --title=\"Global Settings\" --text=\"<big>\r\rPlease, enter your account(s) details.\rThose informations are not stored on internet.\r\r</big>\" --text-align=center --image=\"$HOME/.config/argos/.cache-icons/iptorrents-big.png\" --form --separator=\"§\" --field=\"Login\" --field=\"Password\" --field=\" \":LBL --field=\"Activate notification thru PushOver:CHK\" --field=\"API KEY\" --field=\"USER_KEY\" --field=\" \":LBL --field=\"WGET User-Agent\" \"$iptorrents_login\" \"$iptorrents_password\" \"\" \"$push_system_status\" \"$token_app\" \"$destinataire_1\" \"\" \"$wget_user_agent\" --button=gtk-ok:0 2>/dev/null >~/.config/argos/.iptorrents-account"`
 
 #### cleaning unnecessary files
 rm -f take_login.* 2>/dev/null
@@ -330,6 +337,12 @@ printf "%-2s \e[1m%-20s\e[0m : %s | image='%s' imageWidth=18 ansi=true font='Ubu
 printf "%-2s \e[1m%-20s\e[0m : %s | image='%s' imageWidth=18 ansi=true font='Ubuntu Mono' trim=false \n" "" "Credits left" "$my_credit_clean" "$CREDITS_ICON"
 echo "---"
 printf "%-2s \e[1m%-20s\e[0m : %s | image='%s' imageWidth=18 ansi=true font='Ubuntu Mono' trim=false href=$website_url/mybonus.php \n" "" "Bonus Points" "$my_bonus" "$BONUS_ICON"
+printf "%-2s \e[1m%-20s\e[0m : %s | image='%s' imageWidth=18 ansi=true font='Ubuntu Mono' trim=false \n" "" "Invitation(s) Left" "$available_invitations" "$INVITATION_ICON"
+if [[ "$available_messages" != "no new messages" ]]; then
+  printf "%-2s \e[1m%-20s\e[0m : %s | image='%s' imageWidth=18 ansi=true font='Ubuntu Mono' trim=false href=$website_url/messages.php \n" "" "Message(s)" "$available_messages" "$MESSAGE_ICON"
+else
+  printf "%-2s \e[1m%-20s\e[0m : %s | image='%s' imageWidth=18 ansi=true font='Ubuntu Mono' trim=false \n" "" "Message(s)" "$available_messages" "$MESSAGE_ICON"
+fi
 printf "%-2s \e[1m%-20s\e[0m : %s | image='%s' imageWidth=18 ansi=true font='Ubuntu Mono' trim=false href=$website_url/seeding_required.php \n" "" "Hit and Run" "$my_hit_run" "$WARNING_ICON"
 echo "---"
 printf "%-2s \e[1m%-20s\e[0m : %s | image='%s' imageWidth=18 ansi=true font='Ubuntu Mono' trim=false \n" "" "Current URL" "$website_url" "$URL_ICON"
